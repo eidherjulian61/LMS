@@ -29,7 +29,7 @@ public interface BorrowingService {
      * @param userId The ID of the user.
      * @return A list of borrowed Books.
      */
-    List<Book> findCurrentlyBorrowedBooksByUser(Long userId);
+    List<Book> findBorrowedBooksByUser(Long userId);
 
     /**
      * Retrieves the complete borrowing history for a specific user.

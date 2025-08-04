@@ -46,13 +46,13 @@ public class BorrowingServiceImpl implements BorrowingService {
             throw new BookNotAvailableException("Book with id " + bookId + " is not available for borrowing.");
         }
 
-        // Check if the user has reached the borrowing limit [cite: 16]
+        // Check if the user has reached the borrowing limit
         long currentlyBorrowed = borrowingRecordRepository.findByUserIdAndReturnDateIsNull(userId).size();
         if (currentlyBorrowed >= BORROWING_LIMIT) {
             throw new UserBorrowingLimitExceededException("User has reached the borrowing limit of " + BORROWING_LIMIT + " books.");
         }
 
-        // Mark book as unavailable and save it [cite: 19]
+        // Mark book as unavailable and save it
         book.setAvailable(false);
         bookRepository.save(book);
 
@@ -61,7 +61,7 @@ public class BorrowingServiceImpl implements BorrowingService {
         record.setUser(user);
         record.setBook(book);
         record.setBorrowDate(LocalDate.now());
-        record.setDueDate(LocalDate.now().plusDays(BORROWING_DAYS)); // Set due date [cite: 18]
+        record.setDueDate(LocalDate.now().plusDays(BORROWING_DAYS)); // Set due date
 
         return borrowingRecordRepository.save(record);
     }
@@ -84,7 +84,7 @@ public class BorrowingServiceImpl implements BorrowingService {
     }
 
     @Override
-    public List<Book> findCurrentlyBorrowedBooksByUser(Long userId) {
+    public List<Book> findBorrowedBooksByUser(Long userId) {
         return borrowingRecordRepository.findByUserIdAndReturnDateIsNull(userId)
                 .stream()
                 .map(BorrowingRecord::getBook)

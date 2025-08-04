@@ -2,6 +2,7 @@ package com.arrowfin.lms.controller;
 
 import com.arrowfin.lms.entity.Book;
 import com.arrowfin.lms.entity.BorrowingRecord;
+import com.arrowfin.lms.service.BorrowingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -19,8 +20,8 @@ public class BorrowingController {
     @PostMapping("/users/{userId}/borrow/{bookId}")
     @PreAuthorize("hasRole('USER')")
     public ResponseEntity<BorrowingRecord> borrowBook(@PathVariable Long userId, @PathVariable Long bookId) {
-        // Users can borrow up to 2 books [cite: 16]
-        // Books can only be borrowed if available [cite: 17]
+        // Users can borrow up to 2 books
+        // Books can only be borrowed if available
         BorrowingRecord record = borrowingService.borrowBook(userId, bookId);
         return ResponseEntity.ok(record);
     }
@@ -36,5 +37,11 @@ public class BorrowingController {
     public ResponseEntity<List<Book>> getBorrowedBooks(@PathVariable Long userId) {
         List<Book> books = borrowingService.findBorrowedBooksByUser(userId);
         return ResponseEntity.ok(books);
+    }
+
+    @GetMapping("/users/{userId}/history")
+    public ResponseEntity<List<BorrowingRecord>> getBorrowingHistory(@PathVariable Long userId) {
+        List<BorrowingRecord> history = borrowingService.findBorrowingHistoryByUser(userId);
+        return ResponseEntity.ok(history);
     }
 }
