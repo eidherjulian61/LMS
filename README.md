@@ -130,7 +130,7 @@ payload.
 {
   "id": 102,
   "name": "Eidher.Cadavid",
-  "email": "eidherjulian61@gmail.com",
+  "email": "eidherjulian61@example.com",
   "libraryId": "lib_user_2024",
   "password": "SecurePassword123!",
   "role": "ADMIN"
@@ -175,7 +175,7 @@ user via the API, you would make a `POST` request with the following details.
 {
   "id": 102,
   "name": "Eidher.Cadavid",
-  "email": "eidherjulian61@msn.com",
+  "email": "eidherjulian61@example.com",
   "libraryId": "lib_user_2027",
   "password": "SecurePassword123!",
   "role": "ADMIN"
