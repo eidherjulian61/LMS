@@ -2,8 +2,8 @@ package com.arrowfin.lms.controller;
 
 import com.arrowfin.lms.dto.UserDTO;
 import com.arrowfin.lms.security.JwtUtil;
-import com.arrowfin.lms.service.UserService;
 import com.arrowfin.lms.service.UserDetailsServiceImpl;
+import com.arrowfin.lms.service.UserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
